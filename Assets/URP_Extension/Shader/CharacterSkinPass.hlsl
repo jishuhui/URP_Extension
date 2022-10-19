@@ -121,7 +121,8 @@ half4 CommonLitFrag(Varyings input): SV_TARGET
     half alpha = 1;
     BRDF brdf = GetSimpleBRDF(surface, alpha);
     GI gi = GET_GI(input.lightmapUV, input.vertexSH, surface, brdf);
-    
+
+    //角色光照
     half3 color = LightingCharacterCommon(brdf, surface, vertexData, gi, rimColor);
 
     color = MixFog(color, input.VertexLightAndFog.w);

@@ -216,11 +216,11 @@ half3 DirectHairSpecularTone(CharacterParam characterParam, Light light, half3 d
 
 half3 LightingCharacterCommon(BRDF brdf, Surface surface, VertexData vertexData, GI gi, half4 rimColor = half4(0,0,0,0))
 {
-    half3 color = IndirectBRDF(surface, brdf, gi.diffuse, gi.specular);
+    half3 color = IndirectBRDF(surface, brdf, gi.diffuse, gi.specular);//间接光照
     color *= surface.occlusion; 
 
     Light mainLight = GetMainLight(surface.position, vertexData.shadowCoord, gi.shadowMask);
-    color += DirectBRDF(surface, brdf, mainLight, true);
+    color += DirectBRDF(surface, brdf, mainLight, true);//直接光照
 
 #if _RIM
     color += RimColor(mainLight.direction, surface.normal, surface.viewDirection, rimColor);
